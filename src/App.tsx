@@ -1,6 +1,10 @@
+import { AppLayout } from 'layouts/AppLayout/AppLayout'
+
 const App = () => {
   return (
-    <div>App</div>
+    <AppLayout>
+      
+    </AppLayout>
   )
 }
 

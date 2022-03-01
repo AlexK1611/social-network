@@ -1,0 +1,25 @@
+.appLayout {
+    display: grid;
+    grid-template-areas: 'header header' 'sidebar content';
+    grid-template-columns: 300px calc(100vw - 300px);
+    grid-template-rows: 75px calc(100vh - 75px);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.appHeader {
+    grid-area: header;
+    background-color: #284655;
+}
+
+.appSidebar {
+    grid-area: sidebar;
+    background-color: #284655;
+}
+
+.appContent {
+    grid-area: content;
+    padding: 20px;
+    overflow-y: auto;
+}
