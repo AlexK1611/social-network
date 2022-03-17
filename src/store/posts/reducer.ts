@@ -5,15 +5,23 @@ import {
 } from './types'
 
 const initialState: IPostsState = {
-    posts: null
+    isLoading: false,
+    postItems: null
 }
 
 export const postsReducer = (state = initialState, action: PostsAction): IPostsState => {
     switch (action.type) {
+        case PostsActionTypes.GET_POSTS: {
+            return {
+                ...state,
+                isLoading: true
+            }
+        }
         case PostsActionTypes.SET_POSTS: {
             return {
                 ...state,
-                posts: action.payload
+                isLoading: false,
+                postItems: action.payload
             }
         }
         default: {

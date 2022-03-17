@@ -13,7 +13,8 @@ export interface IUserItems {
 }
 
 export interface IUsersState {
-    users: IUserItems | null
+    isLoading: boolean,
+    userItems: IUserItems | null
 }
 
 export enum UsersActionTypes {
@@ -21,9 +22,13 @@ export enum UsersActionTypes {
     SET_USERS = 'SET_USERS'
 }
 
+interface GetUsersAction {
+    type: UsersActionTypes.GET_USERS
+}
+
 interface SetUsersAction {
     type: UsersActionTypes.SET_USERS,
     payload: IUserItems
 }
 
-export type UsersAction = SetUsersAction
+export type UsersAction = GetUsersAction | SetUsersAction
