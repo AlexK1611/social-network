@@ -1,5 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { axiosInstance } from 'config/api'
+import { setUsersAction } from './actions'
 import { IUserItems, UsersActionTypes } from './types'
 
 const getUsers = async () => {
@@ -8,8 +9,12 @@ const getUsers = async () => {
 }
 
 export function* usersWorker(): Generator {
-    const payload = yield call(getUsers)
-    yield put({ type: UsersActionTypes.SET_USERS, payload })
+    try {
+        const payload: any = yield call(getUsers)
+        yield put(setUsersAction(payload))
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export function* usersWatcher() {

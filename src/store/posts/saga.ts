@@ -1,15 +1,24 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { axiosInstance } from 'config/api'
+import { setPostsAction } from './actions'
 import { IPostItems, PostsActionTypes } from './types'
 
 const getPosts = async () => {
-    const { data } = await axiosInstance.get<IPostItems>('/posts')
+    const { data } = await axiosInstance.get<IPostItems>('/posts', {
+        params: {
+            _limit: 10
+        }
+    })
     return data
 }
 
 export function* postsWorker(): Generator {
-    const payload = yield call(getPosts)
-    yield put({ type: PostsActionTypes.SET_POSTS, payload })
+    try {
+        const payload: any = yield call(getPosts)
+        yield put(setPostsAction(payload))
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export function* postsWatcher() {
