@@ -1,4 +1,4 @@
-interface IUserItem {
+export interface IUserItem {
     id: number,
     name: string,
     username: string,
@@ -8,13 +8,9 @@ interface IUserItem {
     }
 }
 
-export interface IUserItems {
-    data: IUserItem[]
-}
-
 export interface IUsersState {
     isLoading: boolean,
-    userItems: IUserItems | null
+    userItems: IUserItem[] | null
 }
 
 export enum UsersActionTypes {
@@ -28,7 +24,7 @@ interface GetUsersAction {
 
 interface SetUsersAction {
     type: UsersActionTypes.SET_USERS,
-    payload: IUserItems
+    payload: IUserItem[]
 }
 
 export type UsersAction = GetUsersAction | SetUsersAction

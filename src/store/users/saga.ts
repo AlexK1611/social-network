@@ -1,10 +1,10 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { axiosInstance } from 'config/api'
 import { setUsersAction } from './actions'
-import { IUserItems, UsersActionTypes } from './types'
+import { IUserItem, UsersActionTypes } from './types'
 
 const getUsers = async () => {
-    const { data } = await axiosInstance.get<IUserItems>('/users')
+    const { data } = await axiosInstance.get<IUserItem[]>('/users')
     return data
 }
 

@@ -1,10 +1,10 @@
-import { IUserItems, UsersActionTypes } from './types'
+import { IUserItem, UsersActionTypes } from './types'
 
 export const getUsersAction = () => ({
     type: UsersActionTypes.GET_USERS
 })
 
-export const setUsersAction = (payload: IUserItems) => ({
+export const setUsersAction = (payload: IUserItem[]) => ({
     type: UsersActionTypes.SET_USERS,
     payload
 })
