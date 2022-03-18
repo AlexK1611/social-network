@@ -26,7 +26,7 @@ export const Friends = () => {
     return (
         <div className={styles.friendsLayout}>
             {users && users.map(user => (
-                <UserItem username={user.username}/>
+                <UserItem key={`user-${user.id}`} username={user.username}/>
             ))}
         </div>
     )
