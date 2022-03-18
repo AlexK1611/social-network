@@ -1,3 +1,3 @@
-export interface IUserItem {
+export interface IUserItemProps {
     username: string
 }

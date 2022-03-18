@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import styles from './UserItem.module.scss'
-import { IUserItem } from './UserItem.types'
+import { IUserItemProps } from './UserItem.types'
 
-export const UserItem: FC<IUserItem> = ({ username }) => {
+export const UserItem: FC<IUserItemProps> = ({ username }) => {
     return (
         <div className={styles.userItem}>
             <div className={styles.userAvatar}></div>
