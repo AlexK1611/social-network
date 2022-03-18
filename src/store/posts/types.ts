@@ -12,7 +12,9 @@ export interface IPostsState {
 
 export enum PostsActionTypes {
     GET_POSTS = 'GET_POSTS',
-    SET_POSTS = 'SET_POSTS'
+    SET_POSTS = 'SET_POSTS',
+    GET_MORE_POSTS = 'GET_MORE_POSTS',
+    SET_MORE_POSTS = 'SET_MORE_POSTS'
 }
 
 interface GetPostsAction {
@@ -24,4 +26,18 @@ interface SetPostsAction {
     payload: IPostItem[]
 }
 
-export type PostsAction = GetPostsAction | SetPostsAction
+interface GetMorePostsAction {
+    type: PostsActionTypes.GET_MORE_POSTS
+}
+
+interface SetMorePostsAction {
+    type: PostsActionTypes.SET_MORE_POSTS,
+    payload: IPostItem[]
+}
+
+export type PostsAction = (
+    GetPostsAction | 
+    SetPostsAction |
+    GetMorePostsAction |
+    SetMorePostsAction
+)

@@ -8,3 +8,13 @@ export const setPostsAction = (payload: IPostItem[]) => ({
     type: PostsActionTypes.SET_POSTS,
     payload
 })
+
+export const getMorePostsAction = (payload: number) => ({
+    type: PostsActionTypes.GET_MORE_POSTS,
+    payload
+})
+
+export const setMorePostsAction = (payload: IPostItem[]) => ({
+    type: PostsActionTypes.SET_MORE_POSTS,
+    payload
+})
