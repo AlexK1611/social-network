@@ -7,19 +7,3 @@
     height: 100vh;
     overflow: hidden;
 }
-
-.appHeader {
-    grid-area: header;
-    background-color: #284655;
-}
-
-.appSidebar {
-    grid-area: sidebar;
-    background-color: #284655;
-}
-
-.appContent {
-    grid-area: content;
-    padding: 20px;
-    overflow-y: auto;
-}
