@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router-dom'
 import { AppLayout } from 'layouts/AppLayout/AppLayout'
+import { Main } from 'pages/Main/Main'
 import { Friends } from 'pages/Friends/Friends'
 
 const App = () => {
@@ -11,7 +12,7 @@ const App = () => {
     <BrowserRouter>
       <AppLayout>
         <Routes>
-          <Route path='/' element={<p>main</p>} />
+          <Route path='/' element={<Main />} />
           <Route path='/friends' element={<Friends />} />
           <Route path='/albums' element={<p>albums</p>} />
         </Routes>

@@ -1,17 +1,13 @@
-interface IPostItem {
+export interface IPostItem {
     userId: number,
     id: number,
     title: string,
     body: string
 }
 
-export interface IPostItems {
-    data: IPostItem[]
-}
-
 export interface IPostsState {
     isLoading: boolean,
-    postItems: IPostItems | null
+    postItems: IPostItem[] | null
 }
 
 export enum PostsActionTypes {
@@ -25,7 +21,7 @@ interface GetPostsAction {
 
 interface SetPostsAction {
     type: PostsActionTypes.SET_POSTS,
-    payload: IPostItems
+    payload: IPostItem[]
 }
 
 export type PostsAction = GetPostsAction | SetPostsAction

@@ -1,0 +1,21 @@
+.postItem {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #1B303A;
+    &:first-child {
+        margin-top: 0;
+    }  
+}
+
+.postTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #66DAFF;
+}
+
+.postText {
+    margin-top: 10px;
+    font-size: 17px;
+    color: #66DAFF;
+}

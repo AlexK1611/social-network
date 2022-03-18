@@ -1,10 +1,10 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { axiosInstance } from 'config/api'
 import { setPostsAction } from './actions'
-import { IPostItems, PostsActionTypes } from './types'
+import { IPostItem, PostsActionTypes } from './types'
 
 const getPosts = async () => {
-    const { data } = await axiosInstance.get<IPostItems>('/posts', {
+    const { data } = await axiosInstance.get<IPostItem[]>('/posts', {
         params: {
             _limit: 10
         }
