@@ -11,6 +11,7 @@ export const Sidebar = () => {
                         key={route.id}
                         path={route.path}
                         title={route.title}
+                        icon={route.icon}
                     />
                 ))}
             </ul>
