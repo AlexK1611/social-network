@@ -16,21 +16,19 @@ import { IPostItem } from 'store/posts/types'
 import { PostItem } from './components/PostItem/PostItem'
 
 export const Main = () => {
-    const [count, increaseCount] = useState(0)
-    const handleIncreaseCount = () => {
-        increaseCount(count + 10)
-    }
+    const [count, increaseCount] = useState(10)
 
     const posts: IPostItem[] | null = useSelector(postItems)
     const dispatch = useDispatch()
 
+    const handleLoadMore = () => {
+        dispatch(getMorePostsAction(count))
+        increaseCount(count + 10)
+    }
+
     useEffect(() => {
         dispatch(getPostsAction())
     }, [dispatch])
-
-    useEffect(() => {
-        dispatch(getMorePostsAction(count))
-    }, [dispatch, count])
 
     return (
         <>
@@ -45,7 +43,7 @@ export const Main = () => {
             </div>
             <button
                 className={styles.loadMoreBtn}
-                onClick={handleIncreaseCount}
+                onClick={handleLoadMore}
             >
                 Load more
             </button>
