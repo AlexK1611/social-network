@@ -4,15 +4,24 @@
     align-items: center;
 }
 
-.userAvatar {
+.userAvatarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 150px;
     height: 150px;
     border-radius: calc(150px / 2);
-    background-color: #FA3954;
+    background-color: #71E7FF;
+}
+
+.userAvatar {
+    width: 75px;
+    height: 75px;
+    fill: #F5F5F5;
 }
 
 .userNickname {
     margin-top: 10px;
     font-size: 20px;
-    color: #66DAFF;
+    color: #F5F5F5;
 }
