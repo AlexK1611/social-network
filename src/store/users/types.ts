@@ -9,7 +9,6 @@ export interface IUserItem {
 }
 
 export interface IUsersState {
-    isLoading: boolean,
     userItems: IUserItem[] | null
 }
 

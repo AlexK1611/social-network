@@ -6,7 +6,6 @@ export interface IPostItem {
 }
 
 export interface IPostsState {
-    isLoading: boolean,
     postItems: IPostItem[] | null
 }
 
