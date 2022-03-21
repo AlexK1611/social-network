@@ -1,8 +1,8 @@
 .postItem {
     margin-top: 20px;
     padding: 20px;
-    border-radius: 20px;
-    background-color: #1B303A;
+    border-radius: 10px;
+    background-color: #2B2B2B;
     &:first-child {
         margin-top: 0;
     }  
@@ -17,5 +17,5 @@
 .postText {
     margin-top: 10px;
     font-size: 17px;
-    color: #66DAFF;
+    color: #F5F5F5;
 }
