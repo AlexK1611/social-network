@@ -34,17 +34,19 @@ export const Main = () => {
     }, [dispatch])
 
     return (
-        <div
-            className={styles.postItems}
-            onScroll={handleScroll}
-        >
-            {posts && posts.map(post => (
-                <PostItem
-                    key={`post-${post.id}`}
-                    title={post.title}
-                    text={post.body}
-                />
-            ))}
+        <div className={styles.mainPage}>
+            <div
+                className={styles.postItems}
+                onScroll={handleScroll}
+            >
+                {posts && posts.map(post => (
+                    <PostItem
+                        key={`post-${post.id}`}
+                        title={post.title}
+                        text={post.body}
+                    />
+                ))}
+            </div>
         </div>
     )
 }

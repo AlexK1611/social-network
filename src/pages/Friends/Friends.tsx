@@ -24,10 +24,12 @@ export const Friends = () => {
     }, [dispatch])
 
     return (
-        <div className={styles.userItems}>
-            {users && users.map(user => (
-                <UserItem key={`user-${user.id}`} username={user.username}/>
-            ))}
+        <div className={styles.friendsPage}>
+            <div className={styles.userItems}>
+                {users && users.map(user => (
+                    <UserItem key={`user-${user.id}`} username={user.username} />
+                ))}
+            </div>
         </div>
     )
 }

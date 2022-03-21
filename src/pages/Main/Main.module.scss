@@ -1,6 +1,9 @@
-.postItems {
-    height: calc(100vh - 75px);
-    padding: 60px;
+.mainPage {
     background-color: #284655;
+}
+
+.postItems {
+    height: 100%;
+    padding: 40px;
     overflow-y: auto;
 }
