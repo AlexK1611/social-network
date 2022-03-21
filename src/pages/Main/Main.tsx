@@ -1,5 +1,5 @@
 // react
-import { useState, useEffect } from 'react'
+import { useState, useEffect, UIEvent } from 'react'
 
 // redux
 import { useSelector, useDispatch } from 'react-redux'
@@ -21,9 +21,12 @@ export const Main = () => {
     const posts: IPostItem[] | null = useSelector(postItems)
     const dispatch = useDispatch()
 
-    const handleLoadMore = () => {
-        dispatch(getMorePostsAction(count))
-        increaseCount(count + 10)
+    const handleScroll = (event: UIEvent<HTMLDivElement>) => {
+        const eventTarget = event.currentTarget
+        if (eventTarget.scrollHeight - eventTarget.scrollTop === eventTarget.clientHeight) {
+            dispatch(getMorePostsAction(count))
+            increaseCount(count + 10)
+        }
     }
 
     useEffect(() => {
@@ -31,22 +34,17 @@ export const Main = () => {
     }, [dispatch])
 
     return (
-        <>
-            <div>
-                {posts && posts.map(post => (
-                    <PostItem
-                        key={`post-${post.id}`}
-                        title={post.title}
-                        text={post.body}
-                    />
-                ))}
-            </div>
-            <button
-                className={styles.loadMoreBtn}
-                onClick={handleLoadMore}
-            >
-                Load more
-            </button>
-        </>
+        <div
+            className={styles.postItems}
+            onScroll={handleScroll}
+        >
+            {posts && posts.map(post => (
+                <PostItem
+                    key={`post-${post.id}`}
+                    title={post.title}
+                    text={post.body}
+                />
+            ))}
+        </div>
     )
 }
