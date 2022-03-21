@@ -14,7 +14,6 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/friends' element={<Friends />} />
-          <Route path='/albums' element={<p>albums</p>} />
         </Routes>
       </AppLayout>
     </BrowserRouter>
