@@ -16,7 +16,7 @@ import { IPostItem } from 'store/posts/types'
 import { PostItem } from './components/PostItem/PostItem'
 
 export const Main = () => {
-    const [count, increaseCount] = useState(10)
+    const [count, increaseCount] = useState(20)
 
     const posts: IPostItem[] | null = useSelector(postItems)
     const dispatch = useDispatch()
@@ -25,7 +25,7 @@ export const Main = () => {
         const eventTarget = event.currentTarget
         if (eventTarget.scrollHeight - eventTarget.scrollTop === eventTarget.clientHeight) {
             dispatch(getMorePostsAction(count))
-            increaseCount(count + 10)
+            increaseCount(count + 20)
         }
     }
 

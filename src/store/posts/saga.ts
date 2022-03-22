@@ -6,7 +6,7 @@ import { IPostItem, PostsActionTypes } from './types'
 const getPosts = async () => {
     const { data } = await axiosInstance.get<IPostItem[]>('/posts', {
         params: {
-            _limit: 10
+            _limit: 20
         }
     })
     return data
@@ -24,7 +24,7 @@ export function* loadPostsWorker(): Generator {
 const getMorePosts = async (start: number) => {
     const { data } = await axiosInstance.get<IPostItem[]>('/posts', {
         params: {
-            _limit: 10,
+            _limit: 20,
             _start: start
         }
     })

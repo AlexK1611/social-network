@@ -3,6 +3,9 @@
 }
 
 .postItems {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
     height: 100%;
     padding: 40px;
     overflow-y: auto;
