@@ -1,5 +1,5 @@
 // react
-import { useState, useEffect, UIEvent } from 'react'
+import { useState, useEffect } from 'react'
 
 // redux
 import { useSelector, useDispatch } from 'react-redux'
@@ -23,33 +23,27 @@ export const Main = () => {
 
     const dispatch = useDispatch()
 
-    const handleScroll = (event: UIEvent<HTMLDivElement>) => {
-        const eventTarget = event.currentTarget
-        if (eventTarget.scrollHeight - eventTarget.scrollTop === eventTarget.clientHeight) {
-            dispatch(getMorePostsAction(count))
-            increaseCount(count + 20)
-        }
-    }
-
     useEffect(() => {
         dispatch(getPostsAction())
     }, [dispatch])
 
+    const handleLoadMore = () => {
+        dispatch(getMorePostsAction(count))
+        increaseCount(count + 20)
+    }
+
     return (
         <div className={styles.mainPage}>
-            <div
-                className={styles.postsSection}
-                onScroll={handleScroll}
-            >
-                {dailyPost && (
-                    <PostItem
-                        title={dailyPost.title}
-                        text={dailyPost.body}
-                        isDaily
-                    />
-                )}
+            {dailyPost && (
+                <PostItem
+                    title={dailyPost.title}
+                    text={dailyPost.body}
+                    isDaily
+                />
+            )}
+            {posts && (
                 <div className={styles.postItems}>
-                    {posts && posts.map(post => (
+                    {posts.map(post => (
                         <PostItem
                             key={`post-${post.id}`}
                             title={post.title}
@@ -57,7 +51,13 @@ export const Main = () => {
                         />
                     ))}
                 </div>
-            </div>
+            )}
+            <button
+                className={styles.loadMoreBtn}
+                onClick={handleLoadMore}
+            >
+                More
+            </button>
         </div>
     )
 }

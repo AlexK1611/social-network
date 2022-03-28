@@ -1,5 +1,6 @@
 import {
     takeEvery,
+    takeLatest,
     call,
     put,
     spawn,
@@ -85,5 +86,9 @@ function* loadMorePosts(
 
 export function* postsWatcher() {
     yield takeEvery(PostsActionTypes.GET_POSTS, postsWorker)
-    yield takeEvery(PostsActionTypes.GET_MORE_POSTS, loadMorePosts)
+
+    /*
+        in case there could be a delay, only the last request will start
+    */
+    yield takeLatest(PostsActionTypes.GET_MORE_POSTS, loadMorePosts)
 }
