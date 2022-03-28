@@ -5,3 +5,8 @@ export const postItems = createSelector(
     (state: RootState) => state.posts,
     posts => posts.postItems
 )
+
+export const dailyPostItem = createSelector(
+    (state: RootState) => state.posts,
+    posts => posts.dailyPost
+)

@@ -1,9 +1,9 @@
 // react
-import { useState, useEffect, UIEvent } from 'react'
+import { useState, useEffect } from 'react'
 
 // redux
 import { useSelector, useDispatch } from 'react-redux'
-import { postItems } from 'store/posts/selectors'
+import { dailyPostItem, postItems } from 'store/posts/selectors'
 import { getPostsAction, getMorePostsAction } from 'store/posts/actions'
 
 // styles
@@ -19,34 +19,45 @@ export const Main = () => {
     const [count, increaseCount] = useState(20)
 
     const posts: IPostItem[] | null = useSelector(postItems)
-    const dispatch = useDispatch()
+    const dailyPost: IPostItem | null = useSelector(dailyPostItem)
 
-    const handleScroll = (event: UIEvent<HTMLDivElement>) => {
-        const eventTarget = event.currentTarget
-        if (eventTarget.scrollHeight - eventTarget.scrollTop === eventTarget.clientHeight) {
-            dispatch(getMorePostsAction(count))
-            increaseCount(count + 20)
-        }
-    }
+    const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getPostsAction())
     }, [dispatch])
 
+    const handleLoadMore = () => {
+        dispatch(getMorePostsAction(count))
+        increaseCount(count + 20)
+    }
+
     return (
         <div className={styles.mainPage}>
-            <div
-                className={styles.postItems}
-                onScroll={handleScroll}
+            {dailyPost && (
+                <PostItem
+                    title={dailyPost.title}
+                    text={dailyPost.body}
+                    isDaily
+                />
+            )}
+            {posts && (
+                <div className={styles.postItems}>
+                    {posts.map(post => (
+                        <PostItem
+                            key={`post-${post.id}`}
+                            title={post.title}
+                            text={post.body}
+                        />
+                    ))}
+                </div>
+            )}
+            <button
+                className={styles.loadMoreBtn}
+                onClick={handleLoadMore}
             >
-                {posts && posts.map(post => (
-                    <PostItem
-                        key={`post-${post.id}`}
-                        title={post.title}
-                        text={post.body}
-                    />
-                ))}
-            </div>
+                More
+            </button>
         </div>
     )
 }

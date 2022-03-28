@@ -5,11 +5,18 @@ import {
 } from './types'
 
 const initialState: IPostsState = {
-    postItems: null
+    postItems: null,
+    dailyPost: null
 }
 
 export const postsReducer = (state = initialState, action: PostsAction): IPostsState => {
     switch (action.type) {
+        case PostsActionTypes.SET_DAILY_POST: {
+            return {
+                ...state,
+                dailyPost: action.payload
+            }
+        }
         case PostsActionTypes.SET_POSTS: {
             return {
                 ...state,

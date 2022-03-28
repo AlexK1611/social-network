@@ -1,12 +1,22 @@
 .mainPage {
+    padding: 40px;
     background-color: #4E4E4E;
+    overflow-y: auto;
 }
 
 .postItems {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    height: 100%;
-    padding: 40px;
-    overflow-y: auto;
+    margin-top: 40px;
+}
+
+.loadMoreBtn {
+    margin-top: 40px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #66DAFF;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4E4E4E;
 }

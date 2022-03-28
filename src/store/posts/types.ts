@@ -6,10 +6,12 @@ export interface IPostItem {
 }
 
 export interface IPostsState {
-    postItems: IPostItem[] | null
+    postItems: IPostItem[] | null,
+    dailyPost: IPostItem | null
 }
 
 export enum PostsActionTypes {
+    SET_DAILY_POST = 'SET_DAILY_POST',
     GET_POSTS = 'GET_POSTS',
     SET_POSTS = 'SET_POSTS',
     GET_MORE_POSTS = 'GET_MORE_POSTS',
@@ -18,6 +20,11 @@ export enum PostsActionTypes {
 
 interface GetPostsAction {
     type: PostsActionTypes.GET_POSTS
+}
+
+interface SetDailyPostAction {
+    type: PostsActionTypes.SET_DAILY_POST,
+    payload: IPostItem
 }
 
 interface SetPostsAction {
@@ -36,6 +43,7 @@ interface SetMorePostsAction {
 
 export type PostsAction = (
     GetPostsAction | 
+    SetDailyPostAction |
     SetPostsAction |
     GetMorePostsAction |
     SetMorePostsAction
