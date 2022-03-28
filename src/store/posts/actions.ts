@@ -4,6 +4,11 @@ export const getPostsAction = () => ({
     type: PostsActionTypes.GET_POSTS
 })
 
+export const setDailyPostAction = (payload: IPostItem) => ({
+    type: PostsActionTypes.SET_DAILY_POST,
+    payload
+})
+
 export const setPostsAction = (payload: IPostItem[]) => ({
     type: PostsActionTypes.SET_POSTS,
     payload

@@ -3,7 +3,7 @@ import { useState, useEffect, UIEvent } from 'react'
 
 // redux
 import { useSelector, useDispatch } from 'react-redux'
-import { postItems } from 'store/posts/selectors'
+import { dailyPostItem, postItems } from 'store/posts/selectors'
 import { getPostsAction, getMorePostsAction } from 'store/posts/actions'
 
 // styles
@@ -19,6 +19,8 @@ export const Main = () => {
     const [count, increaseCount] = useState(20)
 
     const posts: IPostItem[] | null = useSelector(postItems)
+    const dailyPost: IPostItem | null = useSelector(dailyPostItem)
+
     const dispatch = useDispatch()
 
     const handleScroll = (event: UIEvent<HTMLDivElement>) => {
@@ -36,16 +38,25 @@ export const Main = () => {
     return (
         <div className={styles.mainPage}>
             <div
-                className={styles.postItems}
+                className={styles.postsSection}
                 onScroll={handleScroll}
             >
-                {posts && posts.map(post => (
+                {dailyPost && (
                     <PostItem
-                        key={`post-${post.id}`}
-                        title={post.title}
-                        text={post.body}
+                        title={dailyPost.title}
+                        text={dailyPost.body}
+                        isDaily
                     />
-                ))}
+                )}
+                <div className={styles.postItems}>
+                    {posts && posts.map(post => (
+                        <PostItem
+                            key={`post-${post.id}`}
+                            title={post.title}
+                            text={post.body}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     )

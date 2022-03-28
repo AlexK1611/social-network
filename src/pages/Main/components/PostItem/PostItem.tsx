@@ -2,9 +2,13 @@ import { FC } from 'react'
 import styles from './PostItem.module.scss'
 import { IPostItemProps } from './PostItem.types'
 
-export const PostItem: FC<IPostItemProps> = ({ title, text }) => {
+export const PostItem: FC<IPostItemProps> = ({ title, text, isDaily }) => {
     return (
-        <div className={styles.postItem}>
+        <div className={
+            isDaily
+            ? `${styles.postItem} ${styles.dailyPost}`
+            : styles.postItem
+        }>
             <p className={styles.postTitle}>
                 {title}
             </p>
