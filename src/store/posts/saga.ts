@@ -1,26 +1,39 @@
-import { takeEvery, call, put, spawn } from 'redux-saga/effects'
+import {
+    takeEvery,
+    call,
+    put,
+    spawn,
+    select
+} from 'redux-saga/effects'
 import { axiosInstance } from 'config/api'
 import { setDailyPostAction, setPostsAction, setMorePostsAction } from './actions'
 import { IPostItem, PostsActionTypes } from './types'
+import { RootState } from 'store/rootState'
 
-const getDailyPost = async () => {
-    const { data } = await axiosInstance.get<IPostItem>('/posts/11')
+const getDailyPost = async (token: string) => {
+    const { data } = await axiosInstance.get<IPostItem>('/posts/11', {
+        params: {
+            _token: token
+        }
+    })
     return data
 }
 
 function* loadDailyPost(): Generator {
     try {
-        const data: any = yield call(getDailyPost)
+        const token: any = yield select((state: RootState) => state.auth.refreshToken)
+        const data: any = yield call(getDailyPost, token)
         yield put(setDailyPostAction(data))
     } catch (error) {
         console.log(error)
     }
 }
 
-const getPosts = async () => {
+const getPosts = async (token: string) => {
     const { data } = await axiosInstance.get<IPostItem[]>('/posts', {
         params: {
-            _limit: 20
+            _limit: 20,
+            _token: token
         }
     })
     return data
@@ -28,7 +41,8 @@ const getPosts = async () => {
 
 function* loadPosts(): Generator {
     try {
-        const data: any = yield call(getPosts)
+        const token: any = yield select((state: RootState) => state.auth.refreshToken)
+        const data: any = yield call(getPosts, token)
         yield put(setPostsAction(data))
     } catch (error) {
         console.log(error)
